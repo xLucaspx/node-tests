@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 // import assert from 'node:assert/strict';
 
-import { calculaDescontos, somaHorasExtras } from '..';
+import { calculaDescontos, somaHorasExtras } from '../../controle-salario';
 
 describe('Testes dos cálculos de folha', () => {
   test('Deve retornar a soma das horas exatas', () => {
