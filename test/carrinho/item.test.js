@@ -18,4 +18,16 @@ describe('Testes dos itens', () => {
     // toBeCloseTo: para números com ponto flutuante:
     expect(item2.pegaValorTotalItem()).toBeCloseTo(0.3);
   });
+
+  test.each([
+    ['Uva', 6.9, 0.7],
+    ['Maçã', 4.5, 6],
+    ['Laranja', 5.65, 1.5],
+  ])('Deve inicializar itens', async (nome, valor, quantidade) => {
+    const item = new Item(nome, valor, quantidade);
+
+    expect(item.nome).toBe(nome);
+    expect(item.valor).toBe(valor);
+    expect(item.quantidade).toBe(quantidade);
+  });
 });
