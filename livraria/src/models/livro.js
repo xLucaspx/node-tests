@@ -18,8 +18,8 @@ class Livro {
     this.paginas = paginas;
     this.editora_id = editora_id;
     this.autor_id = autor_id;
-    this.created_at = created_at || new Date().toISOString();
-    this.updated_at = updated_at || new Date().toISOString();
+    this.created_at = created_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
+    this.updated_at = updated_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
   }
 
   static async pegarLivros() {
@@ -42,7 +42,7 @@ class Livro {
     // o update retorna a quantidade de rows atualizados e não o objeto do registro atualizado
     await db('livros')
       .where({ id })
-      .update({ ...this, updated_at: new Date().toISOString() });
+      .update({ ...this, updated_at: new Date().toISOString().slice(0, 19).replace('T', ' ') });
 
     return db.select('*').from('livros').where({ id });
   }

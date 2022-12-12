@@ -16,8 +16,8 @@ class Editora {
     this.nome = nome;
     this.cidade = cidade;
     this.email = email;
-    this.created_at = created_at || new Date().toISOString();
-    this.updated_at = updated_at || new Date().toISOString();
+    this.created_at = created_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
+    this.updated_at = updated_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
   }
 
   static async pegarEditoras() {
@@ -40,7 +40,7 @@ class Editora {
     // o update retorna a quantidade de rows atualizados e não o objeto do registro atualizado
     await db('editoras')
       .where({ id })
-      .update({ ...this, updated_at: new Date().toISOString() });
+      .update({ ...this, updated_at: new Date().toISOString().slice(0, 19).replace('T', ' ') });
 
     return db.select('*').from('editoras').where({ id });
   }

@@ -14,8 +14,8 @@ class Autor {
     this.id = null || id;
     this.nome = nome;
     this.nacionalidade = nacionalidade;
-    this.created_at = created_at || new Date().toISOString();
-    this.updated_at = updated_at || new Date().toISOString();
+    this.created_at = created_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
+    this.updated_at = updated_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
   }
 
   static async pegarAutores() {
@@ -38,7 +38,7 @@ class Autor {
     // o update retorna a quantidade de rows atualizados e não o objeto do registro atualizado
     await db('autores')
       .where({ id })
-      .update({ ...this, updated_at: new Date().toISOString() });
+      .update({ ...this, updated_at: new Date().toISOString().slice(0, 19).replace('T', ' ') });
 
     return db.select('*').from('autores').where({ id });
   }
